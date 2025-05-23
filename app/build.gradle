@@ -1,13 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
-
+    compileSdk 35
+    lintOptions {
+        abortOnError false
+        checkAllWarnings false
+        ignoreWarnings true
+        warningsAsErrors false
+    }
     defaultConfig {
+        namespace 'waf.thairecog'
         applicationId "waf.thairecog"
-        minSdkVersion 8
-        targetSdkVersion 21
+        minSdk 8
         versionCode 1
         versionName "1.0"
     }
@@ -17,10 +21,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:21.0.3'
-    compile project(':lib:tess-two')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:21.0.3'
+    implementation project(':lib:tess-two')
 }
